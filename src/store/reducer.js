@@ -29,7 +29,13 @@ const reducer = (state = initialState, action) => {
         case 'STORE_RESULT':
             return {
                 ...state,
-                results: state.results.concat({value: state.counter})
+                results: state.results.concat({id: Math.random(new Date()), value: state.counter})
+            }
+        case 'DELETE_RESULT':
+            const newArray = state.results.filter((result) => result.id !== action.id);
+            return {
+                ...state,
+                results: newArray
             }
         default: 
             return state;
